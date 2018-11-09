@@ -6,9 +6,9 @@ import processing.core.*;
 
 public class Logica {
 	private PApplet app;
-	private LinkedList<Modificadores> mod;
-	private LinkedList<Automators> ors;
-	private LinkedList<Elementos> ele;
+	private LinkedList<Modificador> mod;
+	private LinkedList<Automator> ors;
+	private LinkedList<Elemento> ele;
 	private int pantallas = 0;
 	private Saini sai;
 	private PImage[] pantalla;
@@ -22,9 +22,9 @@ public class Logica {
 
 	public Logica(PApplet app) {
 
-		mod = new LinkedList<Modificadores>();
-		ors = new LinkedList<Automators>();
-		ele = new LinkedList<Elementos>();
+		mod = new LinkedList<Modificador>();
+		ors = new LinkedList<Automator>();
+		ele = new LinkedList<Elemento>();
 		psaini = new PImage();
 		pazul = new PImage();
 		pverde = new PImage();
@@ -42,7 +42,7 @@ public class Logica {
 		sai = new Saini(app, 0, 0);
 		sai.start();
 		for (int i = 0; i < 6; i++) {
-			ors.add(new Automators(app, sai));
+			ors.add(new Automator(app, sai));
 		}
 		for (int i = 0; i < ors.size(); i++) {
 			ors.get(i).start();

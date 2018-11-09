@@ -4,7 +4,7 @@ import java.util.*;
 
 import processing.core.*;
 
-public class Automators extends Thread {
+public class Automator extends Thread {
 
 	private PApplet app;
 	private PVector pos;
@@ -18,7 +18,7 @@ public class Automators extends Thread {
 	private int tipo;
 	private Saini si;
 
-	public Automators(PApplet app, Saini si) {
+	public Automator(PApplet app, Saini si) {
 		this.app = app;
 		this.si = si;
 		puntaje =0;

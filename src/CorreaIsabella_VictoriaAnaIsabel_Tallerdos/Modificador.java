@@ -5,13 +5,13 @@ import java.util.LinkedList;
 import processing.core.PApplet;
 import processing.core.PVector;
 
-public class Modificadores {
+public class Modificador {
 	private PApplet app;
 	private PVector pos;
 	private int punto;
 	private int estado;
 	
-	public Modificadores(PApplet app) {
+	public Modificador(PApplet app) {
 		
 	}
 	
