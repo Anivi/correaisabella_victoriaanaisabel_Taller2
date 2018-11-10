@@ -146,6 +146,78 @@ public class Automator extends Thread {
 	public void setTipo(int tipo) {
 		this.tipo = tipo;
 	}
+
+	public PApplet getApp() {
+		return app;
+	}
+
+	public void setApp(PApplet app) {
+		this.app = app;
+	}
+
+	public PVector getPos() {
+		return pos;
+	}
+
+	public void setPos(PVector pos) {
+		this.pos = pos;
+	}
+
+	public PVector getVel() {
+		return vel;
+	}
+
+	public void setVel(PVector vel) {
+		this.vel = vel;
+	}
+
+	public int getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(int direccion) {
+		this.direccion = direccion;
+	}
+
+	public PImage[] getAut1() {
+		return aut1;
+	}
+
+	public void setAut1(PImage[] aut1) {
+		this.aut1 = aut1;
+	}
+
+	public PImage[] getAut2() {
+		return aut2;
+	}
+
+	public void setAut2(PImage[] aut2) {
+		this.aut2 = aut2;
+	}
+
+	public PImage[] getAut3() {
+		return aut3;
+	}
+
+	public void setAut3(PImage[] aut3) {
+		this.aut3 = aut3;
+	}
+
+	public int getAuto() {
+		return auto;
+	}
+
+	public void setAuto(int auto) {
+		this.auto = auto;
+	}
+
+	public Saini getSi() {
+		return si;
+	}
+
+	public void setSi(Saini si) {
+		this.si = si;
+	}
 	
 	
 	

@@ -107,7 +107,7 @@ public class Logica {
 			for (int i = 0; i < automators.size(); i++) {
 				automators.get(i).pintar();
 				automators.get(i).mover();
-				automators.get(i).validar();
+				// automators.get(i).validar();
 			}
 
 			for (int i = 0; i < elementos.size(); i++) {
@@ -118,6 +118,7 @@ public class Logica {
 				modificadores.get(i).pintar();
 			}
 
+			coger();
 			break;
 		case 2:
 			app.imageMode(app.CORNER);
@@ -137,6 +138,88 @@ public class Logica {
 
 	public void coger() {
 
+		// MALOS TOCAN A SAINI
+		for (int i = 0; i < automators.size(); i++) {
+
+			Automator automator = automators.get(i);
+
+			if (saini.isInvul() == false) {
+
+				if ((app.dist(saini.getX(), saini.getY(), automator.getPos().x, automator.getPos().y) < 60)
+						&& (saini.getPuntaje() < automator.getPuntaje())) {
+
+					saini.setPuntaje(saini.getPuntaje() - 1);
+					saini.setInvul(true);
+
+					// SAINI LE QUITA PUNTOS A LOS MALOS
+				} else if ((app.dist(saini.getX(), saini.getY(), automator.getPos().x, automator.getPos().y) < 60)
+						&& (saini.getPuntaje() > automator.getPuntaje())) {
+
+					automator.setPuntaje(automator.getPuntaje() - 1);
+					
+					if (automator.getPuntaje() <= 0) {
+						automators.remove(automator);
+						break;
+					}
+					saini.setInvul(false);
+				}
+			}
+
+			// MALOS SE COMEN UN ELEMENTO
+			for (int j = 0; j < elementos.size(); j++) {
+
+				Elemento elemento = elementos.get(j);
+
+				if ((app.dist(elemento.getX(), elemento.getY(), automator.getPos().x, automator.getPos().y) < 60)) {
+
+					automator.setPuntaje(automator.getPuntaje() + 1);
+					elementos.remove(elemento);
+					break;
+				}
+			}
+
+			// MALOS SE COMEN UN MODIFICADOR
+			// *********************FALTA!!!*************************************
+			for (int j = 0; j < elementos.size(); j++) {
+
+				Elemento elemento = elementos.get(j);
+
+				if ((app.dist(elemento.getX(), elemento.getY(), automator.getPos().x, automator.getPos().y) < 60)) {
+
+					automator.setPuntaje(automator.getPuntaje() + 1);
+					elementos.remove(elemento);
+					break;
+				}
+			}
+		}
+
+		// SAINI SE COME UN ELEMENTO
+
+		for (int j = 0; j < elementos.size(); j++) {
+
+			Elemento elemento = elementos.get(j);
+
+			if ((app.dist(elemento.getX(), elemento.getY(), saini.getPos().x, saini.getPos().y) < 60)) {
+
+				saini.setPuntaje(saini.getPuntaje() + 1);
+				elementos.remove(elemento);
+				break;
+			}
+		}
+
+		// SAINI SE COMEN UN MODIFICADOR
+		// *********************FALTA!!!*************************************
+		for (int j = 0; j < elementos.size(); j++) {
+
+			Elemento elemento = elementos.get(j);
+
+			if ((app.dist(elemento.getX(), elemento.getY(), saini.getPos().x, saini.getPos().y) < 60)) {
+
+				saini.setPuntaje(saini.getPuntaje() + 1);
+				elementos.remove(elemento);
+				break;
+			}
+		}
 	}
 
 	public void mouse() {

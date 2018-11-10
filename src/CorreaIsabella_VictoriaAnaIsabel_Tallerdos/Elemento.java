@@ -29,4 +29,53 @@ public class Elemento extends Thread {
 		app.image(elementoImagen, x, y);
 	}
 
+	public PApplet getApp() {
+		return app;
+	}
+
+	public void setApp(PApplet app) {
+		this.app = app;
+	}
+
+	public PImage getElementoImagen() {
+		return elementoImagen;
+	}
+
+	public void setElementoImagen(PImage elementoImagen) {
+		this.elementoImagen = elementoImagen;
+	}
+
+	public int getPunto() {
+		return punto;
+	}
+
+	public void setPunto(int punto) {
+		this.punto = punto;
+	}
+
+	public float getX() {
+		return x;
+	}
+
+	public void setX(float x) {
+		this.x = x;
+	}
+
+	public float getY() {
+		return y;
+	}
+
+	public void setY(float y) {
+		this.y = y;
+	}
+
+	public Saini getSaini() {
+		return saini;
+	}
+
+	public void setSaini(Saini saini) {
+		this.saini = saini;
+	}
+
+	
 }

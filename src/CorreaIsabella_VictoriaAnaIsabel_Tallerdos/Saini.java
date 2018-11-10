@@ -245,4 +245,60 @@ public class Saini extends Thread {
 		this.invul = invul;
 	}
 
+	public PVector getVel() {
+		return vel;
+	}
+
+	public void setVel(PVector vel) {
+		this.vel = vel;
+	}
+
+	public PVector getPos() {
+		return pos;
+	}
+
+	public void setPos(PVector pos) {
+		this.pos = pos;
+	}
+
+	public PApplet getApp() {
+		return app;
+	}
+
+	public void setApp(PApplet app) {
+		this.app = app;
+	}
+
+	public PVector getVelcam() {
+		return velcam;
+	}
+
+	public void setVelcam(PVector velcam) {
+		this.velcam = velcam;
+	}
+
+	public PImage[] getSai() {
+		return sai;
+	}
+
+	public void setSai(PImage[] sai) {
+		this.sai = sai;
+	}
+
+	public int getMover() {
+		return mover;
+	}
+
+	public void setMover(int mover) {
+		this.mover = mover;
+	}
+
+	public int getContador() {
+		return contador;
+	}
+
+	public void setContador(int contador) {
+		this.contador = contador;
+	}
+
 }

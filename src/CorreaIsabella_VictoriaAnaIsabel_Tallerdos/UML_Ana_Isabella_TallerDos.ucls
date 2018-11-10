@@ -16,7 +16,7 @@
     project="CorreaIsabella_VictoriaAnaIsabel_Tallerdos" 
     file="/CorreaIsabella_VictoriaAnaIsabel_Tallerdos/src/CorreaIsabella_VictoriaAnaIsabel_Tallerdos/Modificador.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="171" width="188" x="-211" y="670"/>    
+    <position height="-1" width="-1" x="211" y="1109"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -27,7 +27,7 @@
     project="CorreaIsabella_VictoriaAnaIsabel_Tallerdos" 
     file="/CorreaIsabella_VictoriaAnaIsabel_Tallerdos/src/CorreaIsabella_VictoriaAnaIsabel_Tallerdos/Automator.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="405" width="188" x="17" y="670"/>    
+    <position height="-1" width="-1" x="1561" y="592"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -49,7 +49,7 @@
     project="CorreaIsabella_VictoriaAnaIsabel_Tallerdos" 
     file="/CorreaIsabella_VictoriaAnaIsabel_Tallerdos/src/CorreaIsabella_VictoriaAnaIsabel_Tallerdos/Logica.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="351" width="188" x="17" y="279"/>    
+    <position height="-1" width="-1" x="517" y="338"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -60,7 +60,7 @@
     project="CorreaIsabella_VictoriaAnaIsabel_Tallerdos" 
     file="/CorreaIsabella_VictoriaAnaIsabel_Tallerdos/src/CorreaIsabella_VictoriaAnaIsabel_Tallerdos/Saini.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="437" y="984"/>    
+    <position height="-1" width="-1" x="941" y="1078"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -70,10 +70,10 @@
   <association id="7">    
     <end type="SOURCE" refId="3" navigable="false">      
       <attribute id="8" name="si">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="504" y="94"/>      
       </attribute>      
       <multiplicity id="9" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="504" y="94"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
@@ -82,10 +82,10 @@
   <association id="10">    
     <end type="SOURCE" refId="5" navigable="false">      
       <attribute id="11" name="modificadores">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="328" y="354"/>      
       </attribute>      
       <multiplicity id="12" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="328" y="354"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
@@ -94,10 +94,10 @@
   <association id="13">    
     <end type="SOURCE" refId="4" navigable="false">      
       <attribute id="14" name="logica">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="406" y="-116"/>      
       </attribute>      
       <multiplicity id="15" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="406" y="-116"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
@@ -118,23 +118,22 @@
   <association id="19">    
     <end type="SOURCE" refId="5" navigable="false">      
       <attribute id="20" name="automators">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="1450" y="-280"/>      
       </attribute>      
       <multiplicity id="21" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="1450" y="-280"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="22">    
-    <bendpoint x="235" y="670"/>    
     <end type="SOURCE" refId="5" navigable="false">      
       <attribute id="23" name="saini">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="504" y="94"/>      
       </attribute>      
       <multiplicity id="24" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="504" y="94"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
