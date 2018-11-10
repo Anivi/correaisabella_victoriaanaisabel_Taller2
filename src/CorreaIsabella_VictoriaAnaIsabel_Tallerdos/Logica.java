@@ -6,11 +6,11 @@ import processing.core.*;
 
 public class Logica {
 	private PApplet app;
-	private LinkedList<Modificador> mod;
-	private LinkedList<Automator> ors;
-	private LinkedList<Elemento> ele;
+	private LinkedList<Modificador> modificadores;
+	private LinkedList<Automator> automators;
+	private LinkedList<Elemento> elementos;
 	private int pantallas = 0;
-	private Saini sai;
+	private Saini saini;
 	private PImage[] pantalla;
 	private PImage psaini;
 	private PImage pazul;
@@ -22,9 +22,9 @@ public class Logica {
 
 	public Logica(PApplet app) {
 
-		mod = new LinkedList<Modificador>();
-		ors = new LinkedList<Automator>();
-		ele = new LinkedList<Elemento>();
+		modificadores = new LinkedList<Modificador>();
+		automators = new LinkedList<Automator>();
+		elementos = new LinkedList<Elemento>();
 		psaini = new PImage();
 		pazul = new PImage();
 		pverde = new PImage();
@@ -39,13 +39,20 @@ public class Logica {
 		pazul = app.loadImage("pazul.png");
 		pverde = app.loadImage("pverde.png");
 		projo = app.loadImage("projo.png");
-		sai = new Saini(app, 0, 0);
-		sai.start();
+		saini = new Saini(app, 0, 0);
+		saini.start();
 		for (int i = 0; i < 6; i++) {
-			ors.add(new Automator(app, sai));
+			automators.add(new Automator(app, saini));
 		}
-		for (int i = 0; i < ors.size(); i++) {
-			ors.get(i).start();
+		for (int i = 0; i < automators.size(); i++) {
+			automators.get(i).start();
+		}
+		
+		for (int i = 0; i < 30; i++) {
+			elementos.add(new Elemento(app));
+		}
+		for (int i = 0; i < elementos.size(); i++) {
+			elementos.get(i).start();
 		}
 
 	}
@@ -61,24 +68,28 @@ public class Logica {
 
 		case 1:
 			app.imageMode(app.CORNER);
-			app.image(pantalla[1], sai.getCamx(), sai.getCamy());
+			app.image(pantalla[1], saini.getCamx(), saini.getCamy());
 			app.image(psaini, 0, 0);
 			app.image(pazul, 110, 0);
 			app.image(pverde, 220, 0);
 			app.image(projo, 330, 0);
 			app.textSize(50);
 			app.textAlign(app.CENTER);
-			app.text(sai.getPuntaje(), 50, 50);
+			app.text(saini.getPuntaje(), 50, 50);
 
-			app.text(sai.getPuntaje(), 50, 50);
+			app.text(saini.getPuntaje(), 50, 50);
 			
 			app.fill(255);
 			app.ellipse(1193, 691, 80, 80);
-			sai.pintar();
-			for (int i = 0; i < ors.size(); i++) {
-				ors.get(i).pintar();
-				ors.get(i).mover();
-				ors.get(i).validar();
+			saini.pintar();
+			for (int i = 0; i < automators.size(); i++) {
+				automators.get(i).pintar();
+				automators.get(i).mover();
+				automators.get(i).validar();
+			}
+			
+			for (int i = 0; i < elementos.size(); i++) {
+				elementos.get(i).pintar();
 			}
 
 			break;
@@ -118,10 +129,10 @@ public class Logica {
 	}
 
 	public void tecla() {
-		sai.mover();
+		saini.mover();
 	}
 
 	public void soltar() {
-		sai.noMover();
+		saini.noMover();
 	}
 }
