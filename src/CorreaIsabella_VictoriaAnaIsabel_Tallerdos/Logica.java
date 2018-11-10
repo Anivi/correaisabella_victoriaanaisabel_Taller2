@@ -5,6 +5,12 @@ import java.util.*;
 import processing.core.*;
 
 public class Logica {
+
+	public static final int CACTUS = 0;
+	public static final int CHOCOLATE = 1;
+	public static final int PASTEL = 2;
+	public static final int POSION = 3;
+
 	private PApplet app;
 	private LinkedList<Modificador> modificadores;
 	private LinkedList<Automator> automators;
@@ -47,12 +53,28 @@ public class Logica {
 		for (int i = 0; i < automators.size(); i++) {
 			automators.get(i).start();
 		}
-		
-		for (int i = 0; i < 30; i++) {
-			elementos.add(new Elemento(app));
+
+		for (int i = 0; i < 15; i++) {
+			elementos.add(new Elemento(app, saini));
 		}
 		for (int i = 0; i < elementos.size(); i++) {
 			elementos.get(i).start();
+		}
+
+		for (int i = 0; i < 21; i++) {
+
+			if (i <= 5) {
+				modificadores.add(new Modificador(app, saini, 0));
+			} else if (i > 5 & i <= 10) {
+				modificadores.add(new Modificador(app, saini, 1));
+			} else if (i > 10 & i <= 15) {
+				modificadores.add(new Modificador(app, saini, 2));
+			} else if (i > 15) {
+				modificadores.add(new Modificador(app, saini, 3));
+			}
+		}
+		for (int i = 0; i < modificadores.size(); i++) {
+			modificadores.get(i).start();
 		}
 
 	}
@@ -78,7 +100,7 @@ public class Logica {
 			app.text(saini.getPuntaje(), 50, 50);
 
 			app.text(saini.getPuntaje(), 50, 50);
-			
+
 			app.fill(255);
 			app.ellipse(1193, 691, 80, 80);
 			saini.pintar();
@@ -87,9 +109,13 @@ public class Logica {
 				automators.get(i).mover();
 				automators.get(i).validar();
 			}
-			
+
 			for (int i = 0; i < elementos.size(); i++) {
 				elementos.get(i).pintar();
+			}
+
+			for (int i = 0; i < modificadores.size(); i++) {
+				modificadores.get(i).pintar();
 			}
 
 			break;
