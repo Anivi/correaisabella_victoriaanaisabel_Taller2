@@ -1,8 +1,12 @@
 package CorreaIsabella_VictoriaAnaIsabel_Tallerdos;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.*;
+import javax.swing.Timer;
 
 import processing.core.*;
+import sun.security.krb5.internal.Ticket;
 
 public class Logica {
 
@@ -54,7 +58,7 @@ public class Logica {
 			automators.get(i).start();
 		}
 
-		for (int i = 0; i < 15; i++) {
+		for (int i = 0; i < 30; i++) {
 			elementos.add(new Elemento(app, saini));
 		}
 		for (int i = 0; i < elementos.size(); i++) {
@@ -107,7 +111,6 @@ public class Logica {
 			for (int i = 0; i < automators.size(); i++) {
 				automators.get(i).pintar();
 				automators.get(i).mover();
-				// automators.get(i).validar();
 			}
 
 			for (int i = 0; i < elementos.size(); i++) {
@@ -149,6 +152,15 @@ public class Logica {
 						&& (saini.getPuntaje() < automator.getPuntaje())) {
 
 					saini.setPuntaje(saini.getPuntaje() - 1);
+					automator.setPuntaje(automator.getPuntaje() + 1);
+
+					if (saini.getPuntaje() <= 0) {
+						saini = null;
+
+						// ***************PANTALLA DE PERDER AQUI****************
+						break;
+					}
+
 					saini.setInvul(true);
 
 					// SAINI LE QUITA PUNTOS A LOS MALOS
@@ -156,12 +168,13 @@ public class Logica {
 						&& (saini.getPuntaje() > automator.getPuntaje())) {
 
 					automator.setPuntaje(automator.getPuntaje() - 1);
-					
+					saini.setPuntaje(saini.getPuntaje() + 1);
+
 					if (automator.getPuntaje() <= 0) {
 						automators.remove(automator);
 						break;
 					}
-					saini.setInvul(false);
+					saini.setInvul(true);
 				}
 			}
 
@@ -180,14 +193,15 @@ public class Logica {
 
 			// MALOS SE COMEN UN MODIFICADOR
 			// *********************FALTA!!!*************************************
-			for (int j = 0; j < elementos.size(); j++) {
+			for (int j = 0; j < modificadores.size(); j++) {
 
-				Elemento elemento = elementos.get(j);
+				Modificador modificador = modificadores.get(j);
 
-				if ((app.dist(elemento.getX(), elemento.getY(), automator.getPos().x, automator.getPos().y) < 60)) {
+				if ((app.dist(modificador.getX(), modificador.getY(), automator.getPos().x,
+						automator.getPos().y) < 60)) {
 
-					automator.setPuntaje(automator.getPuntaje() + 1);
-					elementos.remove(elemento);
+					accionModificadores(modificador, automator);
+					modificadores.remove(modificador);
 					break;
 				}
 			}
@@ -209,16 +223,65 @@ public class Logica {
 
 		// SAINI SE COMEN UN MODIFICADOR
 		// *********************FALTA!!!*************************************
-		for (int j = 0; j < elementos.size(); j++) {
+		for (int j = 0; j < modificadores.size(); j++) {
 
-			Elemento elemento = elementos.get(j);
+			Modificador modificador = modificadores.get(j);
 
-			if ((app.dist(elemento.getX(), elemento.getY(), saini.getPos().x, saini.getPos().y) < 60)) {
+			if ((app.dist(modificador.getX(), modificador.getY(), saini.getPos().x, saini.getPos().y) < 60)) {
 
-				saini.setPuntaje(saini.getPuntaje() + 1);
-				elementos.remove(elemento);
+				accionModificadores(modificador, null);
+				modificadores.remove(modificador);
 				break;
 			}
+		}
+	}
+
+	private void accionModificadores(Modificador modificador, Automator automator) {
+
+		if (automator == null) {
+			if (modificador.getId() == CACTUS) {
+
+				int x = saini.getSain();
+				int y = saini.getMover();
+
+				saini.setMovimiento(1);
+
+				System.out.println("entro");
+				Timer timer = new Timer(5000, new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						saini.setMovimiento(3);
+						System.out.println("salio");
+					}
+				});
+
+				timer.setRepeats(false);
+				timer.start();
+
+			} else if (modificador.getId() == CACTUS) {
+
+				int x = saini.getSain();
+				int y = saini.getMover();
+
+				saini.setMovimiento(5);
+
+				System.out.println("entro");
+				Timer timer = new Timer(5000, new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						saini.setMovimiento(3);
+						System.out.println("salio");
+					}
+				});
+
+				timer.setRepeats(false);
+				timer.start();
+
+			}
+		} else {
+
 		}
 	}
 

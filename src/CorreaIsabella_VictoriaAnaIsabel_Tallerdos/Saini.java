@@ -4,6 +4,7 @@ import processing.core.*;
 
 public class Saini extends Thread {
 
+	private int movimiento;
 	private PVector vel;
 	private PVector pos;
 	private int puntaje;
@@ -19,11 +20,12 @@ public class Saini extends Thread {
 
 	public Saini(PApplet app, float x, float y) {
 		this.app = app;
+		movimiento = 3;
 		pos = new PVector(x, y);
-		vel = new PVector(2, 2);
+		vel = new PVector(3, 3);
 		velcam = new PVector(0, 0);
 		mover = 0;
-		puntaje = 0;
+		puntaje = 1;
 		invul = false;
 		// sai = app.loadImage("saini.png");
 		sai = new PImage[3];
@@ -69,7 +71,7 @@ public class Saini extends Thread {
 			break;
 		case 1:
 			if (pos.y - 40 >= 40) {
-				pos.y -= 2;
+				pos.y -= movimiento;
 				velcam.x = 0;
 			} else {
 				if (camy <= -40)
@@ -79,7 +81,7 @@ public class Saini extends Thread {
 			break;
 		case 2:
 			if (pos.y + 40 <= app.height - 80) {
-				pos.y += 2;
+				pos.y += movimiento;
 				velcam.y = 0;
 			} else {
 				if (camy >= -700)
@@ -89,7 +91,7 @@ public class Saini extends Thread {
 			break;
 		case 3:
 			if (pos.x - 50 >= 0) {
-				pos.x -= 2;
+				pos.x -= movimiento;
 				velcam.x = 0;
 			} else {
 				if (camx <= -5)
@@ -99,7 +101,7 @@ public class Saini extends Thread {
 			break;
 		case 4:
 			if (pos.x + 50 <= app.width - 50) {
-				pos.x += 2;
+				pos.x += movimiento;
 				velcam.x = 0;
 			} else {
 				if (camx >= -1200)
@@ -299,6 +301,14 @@ public class Saini extends Thread {
 
 	public void setContador(int contador) {
 		this.contador = contador;
+	}
+
+	public int getMovimiento() {
+		return movimiento;
+	}
+
+	public void setMovimiento(int movimiento) {
+		this.movimiento = movimiento;
 	}
 
 }

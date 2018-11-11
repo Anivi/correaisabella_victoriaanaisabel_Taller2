@@ -10,13 +10,15 @@ public class Modificador extends Thread {
 	private float x, y;
 	private Saini saini;
 	private int estado;
+	private int id;
 
 	public Modificador(PApplet app, Saini saini, int id) {
 
 		this.app = app;
 		this.saini = saini;
 		modificadorSeleccionado = new PImage();
-		seleccionarModificador(id);
+		this.id = id;
+		seleccionarModificador(this.id);
 
 		x = app.random(300, 2200);
 		y = app.random(100, 1000);
@@ -103,6 +105,14 @@ public class Modificador extends Thread {
 
 	public void setEstado(int estado) {
 		this.estado = estado;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

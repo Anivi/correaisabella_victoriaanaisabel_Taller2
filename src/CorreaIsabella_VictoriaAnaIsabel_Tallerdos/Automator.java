@@ -21,9 +21,9 @@ public class Automator extends Thread {
 	public Automator(PApplet app, Saini si) {
 		this.app = app;
 		this.si = si;
-		puntaje =0;
+		puntaje = 1;
 		pos = new PVector(app.random(0, 2400), app.random(-700, 700));
-		vel = new PVector(2, 2);
+		vel = new PVector(3, 3);
 		aut1 = new PImage[3];
 		aut2 = new PImage[3];
 		aut3 = new PImage[3];
@@ -84,14 +84,14 @@ public class Automator extends Thread {
 	public void mover() {
 
 		if (app.dist(si.getX(), si.getY(), pos.x, pos.y) < 300) {
-			vel.x = si.getX() - pos.x;
-			vel.y = si.getY() - pos.y;
+			vel.x = (si.getX() - pos.x);
+			vel.y = (si.getY() - pos.y);
 			vel.normalize();
 			pos.add(vel);
 			auto = si.getSain();
 		} else {
-			vel.x = 2;
-			vel.y = 2;
+			vel.x = 3;
+			vel.y = 3;
 			switch (direccion) {
 
 			case 1:
@@ -119,16 +119,6 @@ public class Automator extends Thread {
 	}
 
 	public void run() {
-	}
-
-	public void validar() {
-		if (si.isInvul() == false) {
-			if (app.dist(si.getX(), si.getY(), pos.x, pos.y) < 60) {
-				si.setPuntaje(si.getPuntaje() - 1);
-				puntaje -= 1;
-				si.setInvul(true);
-			}
-		}
 	}
 
 	public int getPuntaje() {
@@ -218,7 +208,5 @@ public class Automator extends Thread {
 	public void setSi(Saini si) {
 		this.si = si;
 	}
-	
-	
-	
+
 }
