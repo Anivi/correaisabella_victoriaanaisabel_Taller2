@@ -1,0 +1,10 @@
+### Taller 2
+**Universidad Icesi** 
+**Curso:** Diseñando con algoritmos  
+**Docente:** Sebastián Gaviria - Jose Andres Moncada  
+**Tema:** Taller 2 - UML 
+
+  
+**Estudiantes:** Isabella Correa Carvajal / Ana Isabel Victoria
+
+[1]:CorreaIsabella_Victoria_AnaIsabel_UML.jpg
