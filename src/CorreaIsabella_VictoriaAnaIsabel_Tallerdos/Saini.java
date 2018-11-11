@@ -17,10 +17,12 @@ public class Saini extends Thread {
 	private int mover;
 	private int contador;
 	private boolean invul;
+	private int tamaño;
 
 	public Saini(PApplet app, float x, float y) {
 		this.app = app;
 		movimiento = 3;
+		tamaño = 100;
 		pos = new PVector(x, y);
 		vel = new PVector(3, 3);
 		velcam = new PVector(0, 0);
@@ -42,13 +44,13 @@ public class Saini extends Thread {
 		if (invul == false) {
 			switch (sain) {
 			case 1:
-				app.image(sai[0], pos.x, pos.y);
+				app.image(sai[0], pos.x, pos.y, tamaño, tamaño);
 				break;
 			case 2:
-				app.image(sai[1], pos.x, pos.y);
+				app.image(sai[1], pos.x, pos.y, tamaño, tamaño);
 				break;
 			case 3:
-				app.image(sai[2], pos.x, pos.y);
+				app.image(sai[2], pos.x, pos.y, tamaño, tamaño);
 				break;
 			}
 		} else {
@@ -221,6 +223,14 @@ public class Saini extends Thread {
 
 	public float getY() {
 		return pos.y;
+	}
+
+	public int getTamaño() {
+		return tamaño;
+	}
+
+	public void setTamaño(int tamaño) {
+		this.tamaño = tamaño;
 	}
 
 	public float getVelCamX() {

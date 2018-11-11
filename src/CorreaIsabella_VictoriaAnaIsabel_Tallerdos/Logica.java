@@ -6,7 +6,6 @@ import java.util.*;
 import javax.swing.Timer;
 
 import processing.core.*;
-import sun.security.krb5.internal.Ticket;
 
 public class Logica {
 
@@ -29,12 +28,14 @@ public class Logica {
 	private int punver;
 	private int punazu;
 	private int punroj;
+	private boolean inicioElJuego;
 
 	public Logica(PApplet app) {
 
 		modificadores = new LinkedList<Modificador>();
 		automators = new LinkedList<Automator>();
 		elementos = new LinkedList<Elemento>();
+		inicioElJuego = false;
 		psaini = new PImage();
 		pazul = new PImage();
 		pverde = new PImage();
@@ -49,6 +50,10 @@ public class Logica {
 		pazul = app.loadImage("pazul.png");
 		pverde = app.loadImage("pverde.png");
 		projo = app.loadImage("projo.png");
+
+	}
+
+	private void inicializar() {
 		saini = new Saini(app, 0, 0);
 		saini.start();
 		for (int i = 0; i < 6; i++) {
@@ -80,7 +85,6 @@ public class Logica {
 		for (int i = 0; i < modificadores.size(); i++) {
 			modificadores.get(i).start();
 		}
-
 	}
 
 	public void pintar() {
@@ -93,24 +97,71 @@ public class Logica {
 			break;
 
 		case 1:
+
+			if (inicioElJuego == false) {
+				inicializar();
+				Timer timer = new Timer(40000, new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+
+						int sumaAutomator = (punazu + punver + punroj) / 3;
+						int ptsSaini = saini.getPuntaje();
+
+						saini = new Saini(app, 0, 0);
+						automators = new LinkedList<Automator>();
+						modificadores = new LinkedList<Modificador>();
+						elementos = new LinkedList<Elemento>();
+
+						if (sumaAutomator > ptsSaini) {
+							pantallas = 2;
+						} else {
+							pantallas = 3;
+						}
+
+						System.out.println("salio");
+						inicioElJuego = false;
+					}
+				});
+				timer.start();
+				inicioElJuego = true;
+			}
 			app.imageMode(app.CORNER);
 			app.image(pantalla[1], saini.getCamx(), saini.getCamy());
 			app.image(psaini, 0, 0);
 			app.image(pazul, 110, 0);
 			app.image(pverde, 220, 0);
 			app.image(projo, 330, 0);
-			app.textSize(50);
-			app.textAlign(app.CENTER);
-			app.text(saini.getPuntaje(), 50, 50);
-
-			app.text(saini.getPuntaje(), 50, 50);
+			app.textSize(30);
+			app.fill(0, 0, 0);
+			app.text(saini.getPuntaje(), 50, 40);
+			app.text(punazu, 170, 40);
+			app.text(punver, 280, 40);
+			app.text(punroj, 390, 40);
 
 			app.fill(255);
 			app.ellipse(1193, 691, 80, 80);
 			saini.pintar();
+
+			punazu = 0;
+			punver = 0;
+			punroj = 0;
+
 			for (int i = 0; i < automators.size(); i++) {
 				automators.get(i).pintar();
 				automators.get(i).mover();
+
+				Automator automator = automators.get(i);
+
+				if (automator.getTipo() == 0) {
+					punazu += automator.getPuntaje();
+
+				} else if (automator.getTipo() == 1) {
+					punroj += automator.getPuntaje();
+
+				} else if (automator.getTipo() == 2) {
+					punver += automator.getPuntaje();
+				}
 			}
 
 			for (int i = 0; i < elementos.size(); i++) {
@@ -155,9 +206,13 @@ public class Logica {
 					automator.setPuntaje(automator.getPuntaje() + 1);
 
 					if (saini.getPuntaje() <= 0) {
-						saini = null;
+						// SE REINICIA TODO Y SE PASA A PANTALLA DE PERDER
+						saini = new Saini(app, 0, 0);
+						automators = new LinkedList<Automator>();
+						modificadores = new LinkedList<Modificador>();
+						elementos = new LinkedList<Elemento>();
 
-						// ***************PANTALLA DE PERDER AQUI****************
+						pantallas = 2;
 						break;
 					}
 
@@ -192,7 +247,6 @@ public class Logica {
 			}
 
 			// MALOS SE COMEN UN MODIFICADOR
-			// *********************FALTA!!!*************************************
 			for (int j = 0; j < modificadores.size(); j++) {
 
 				Modificador modificador = modificadores.get(j);
@@ -222,7 +276,6 @@ public class Logica {
 		}
 
 		// SAINI SE COMEN UN MODIFICADOR
-		// *********************FALTA!!!*************************************
 		for (int j = 0; j < modificadores.size(); j++) {
 
 			Modificador modificador = modificadores.get(j);
@@ -241,9 +294,6 @@ public class Logica {
 		if (automator == null) {
 			if (modificador.getId() == CACTUS) {
 
-				int x = saini.getSain();
-				int y = saini.getMover();
-
 				saini.setMovimiento(1);
 
 				System.out.println("entro");
@@ -259,10 +309,7 @@ public class Logica {
 				timer.setRepeats(false);
 				timer.start();
 
-			} else if (modificador.getId() == CACTUS) {
-
-				int x = saini.getSain();
-				int y = saini.getMover();
+			} else if (modificador.getId() == CHOCOLATE) {
 
 				saini.setMovimiento(5);
 
@@ -279,9 +326,111 @@ public class Logica {
 				timer.setRepeats(false);
 				timer.start();
 
+			} else if (modificador.getId() == PASTEL) {
+
+				saini.setTamaño(150);
+
+				System.out.println("entro");
+				Timer timer = new Timer(5000, new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						saini.setTamaño(100);
+						System.out.println("salio");
+					}
+				});
+
+				timer.setRepeats(false);
+				timer.start();
+
+			} else if (modificador.getId() == POSION) {
+
+				saini.setTamaño(50);
+
+				System.out.println("entro");
+				Timer timer = new Timer(5000, new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						saini.setTamaño(100);
+						System.out.println("salio");
+					}
+				});
+
+				timer.setRepeats(false);
+				timer.start();
+
 			}
 		} else {
+			if (modificador.getId() == CACTUS) {
 
+				automator.setMovimiento(1);
+
+				System.out.println("entro");
+				Timer timer = new Timer(5000, new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						automator.setMovimiento(3);
+						System.out.println("salio");
+					}
+				});
+
+				timer.setRepeats(false);
+				timer.start();
+
+			} else if (modificador.getId() == CHOCOLATE) {
+
+				automator.setMovimiento(5);
+
+				System.out.println("entro");
+				Timer timer = new Timer(5000, new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						automator.setMovimiento(3);
+						System.out.println("salio");
+					}
+				});
+
+				timer.setRepeats(false);
+				timer.start();
+
+			} else if (modificador.getId() == PASTEL) {
+
+				automator.setTamaño(150);
+
+				System.out.println("entro");
+				Timer timer = new Timer(5000, new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						automator.setTamaño(100);
+						System.out.println("salio");
+					}
+				});
+
+				timer.setRepeats(false);
+				timer.start();
+
+			} else if (modificador.getId() == POSION) {
+
+				automator.setTamaño(50);
+
+				System.out.println("entro");
+				Timer timer = new Timer(5000, new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						automator.setTamaño(100);
+						System.out.println("salio");
+					}
+				});
+
+				timer.setRepeats(false);
+				timer.start();
+
+			}
 		}
 	}
 
@@ -289,12 +438,12 @@ public class Logica {
 
 		if (app.mouseX >= 286 && app.mouseX <= 528 && app.mouseY >= 568 && app.mouseY <= 655 && pantallas == 0) {
 			pantallas = 1;
-		}
-		if (app.dist(app.mouseX, app.mouseY, 1193, 691) < 40 && pantallas == 3) {
-			pantallas = 2;
-		}
-		if (app.dist(app.mouseX, app.mouseY, 1193, 691) < 40 && pantallas == 1) {
-			pantallas = 3;
+
+		} else if (app.mouseX >= 408 && app.mouseX <= 667 && app.mouseY >= 495 && app.mouseY <= 611 && pantallas == 2) {
+			pantallas = 1;
+
+		} else if (app.mouseX >= 521 && app.mouseX <= 787 && app.mouseY >= 509 && app.mouseY <= 621 && pantallas == 3) {
+			pantallas = 1;
 		}
 
 		System.out.println(app.mouseX + " " + app.mouseY);

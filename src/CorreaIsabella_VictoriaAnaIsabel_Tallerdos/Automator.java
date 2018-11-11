@@ -17,10 +17,14 @@ public class Automator extends Thread {
 	private int auto;
 	private int tipo;
 	private Saini si;
+	private int tamaño;
+	private int movimiento;
 
 	public Automator(PApplet app, Saini si) {
 		this.app = app;
 		this.si = si;
+		movimiento = 3;
+		tamaño = 100;
 		puntaje = 1;
 		pos = new PVector(app.random(0, 2400), app.random(-700, 700));
 		vel = new PVector(3, 3);
@@ -43,39 +47,39 @@ public class Automator extends Thread {
 		if (tipo == 0) {
 			switch (auto) {
 			case 1:
-				app.image(aut1[0], pos.x, pos.y);
+				app.image(aut1[0], pos.x, pos.y, tamaño, tamaño);
 				break;
 			case 2:
-				app.image(aut1[1], pos.x, pos.y);
+				app.image(aut1[1], pos.x, pos.y, tamaño, tamaño);
 				break;
 			case 3:
-				app.image(aut1[2], pos.x, pos.y);
+				app.image(aut1[2], pos.x, pos.y, tamaño, tamaño);
 				break;
 			}
 		}
 		if (tipo == 1) {
 			switch (auto) {
 			case 1:
-				app.image(aut2[0], pos.x, pos.y);
+				app.image(aut2[0], pos.x, pos.y, tamaño, tamaño);
 				break;
 			case 2:
-				app.image(aut2[1], pos.x, pos.y);
+				app.image(aut2[1], pos.x, pos.y, tamaño, tamaño);
 				break;
 			case 3:
-				app.image(aut2[2], pos.x, pos.y);
+				app.image(aut2[2], pos.x, pos.y, tamaño, tamaño);
 				break;
 			}
 		}
 		if (tipo == 2) {
 			switch (auto) {
 			case 1:
-				app.image(aut3[0], pos.x, pos.y);
+				app.image(aut3[0], pos.x, pos.y, tamaño, tamaño);
 				break;
 			case 2:
-				app.image(aut3[1], pos.x, pos.y);
+				app.image(aut3[1], pos.x, pos.y, tamaño, tamaño);
 				break;
 			case 3:
-				app.image(aut3[2], pos.x, pos.y);
+				app.image(aut3[2], pos.x, pos.y, tamaño, tamaño);
 				break;
 			}
 		}
@@ -90,8 +94,8 @@ public class Automator extends Thread {
 			pos.add(vel);
 			auto = si.getSain();
 		} else {
-			vel.x = 3;
-			vel.y = 3;
+			vel.x = movimiento;
+			vel.y = movimiento;
 			switch (direccion) {
 
 			case 1:
@@ -135,6 +139,22 @@ public class Automator extends Thread {
 
 	public void setTipo(int tipo) {
 		this.tipo = tipo;
+	}
+
+	public int getTamaño() {
+		return tamaño;
+	}
+
+	public int getMovimiento() {
+		return movimiento;
+	}
+
+	public void setMovimiento(int movimiento) {
+		this.movimiento = movimiento;
+	}
+
+	public void setTamaño(int tamaño) {
+		this.tamaño = tamaño;
 	}
 
 	public PApplet getApp() {
